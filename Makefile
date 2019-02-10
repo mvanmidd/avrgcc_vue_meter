@@ -6,13 +6,18 @@ programmerDev=`ls /*/cu.usb*`
 programmerType=avr109
 # programmerType=usbasp
 
+QMK_LIBS=-I/Users/markvan/devel/keyboard/qmk_firmware/drivers \
+						-I/Users/markvan/devel/keyboard/qmk_firmware/quantum
+ARDUINO_LIBS=-I/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino \
+						-I/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/variants/leonardo
+NEOPIXEL_LIBS=-I/Users/markvan/devel/keyboard/vumeter/Adafruit_NeoPixel
+LIGHTWS_LIBS=-I/Users/markvan/devel/keyboard/vumeter/light_ws2812
 
 cflags=-DF_CPU=$(avrFreq) -mmcu=$(avrType) -Wall -Werror -Wextra -Os \
 	-nostdlib -nostartfiles \
-	-I/Users/markvan/devel/keyboard/vumeter/Adafruit_NeoPixel \
-	-I/Users/markvan/devel/keyboard/qmk_firmware/drivers \
-	-I/Users/markvan/devel/keyboard/qmk_firmware/quantum \
-	-I/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino -I/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/variants/leonardo
+	$(LIGHTWS_LIBS) \
+	$(QMK_LIBS)
+
 
 objects=$(patsubst %.c,%.o,$(wildcard *.c))
 
