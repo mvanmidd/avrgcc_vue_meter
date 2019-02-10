@@ -1,0 +1,10 @@
+Had to tweak some stuff, this is the avrdude command that works:
+
+avrdude -p atmega32u4 -c avr109 -P `ls /*/cu.usb*`  -v -U flash:w:main.hex
+
+
+Light_WS2812 code copied from https://github.com/cpldcpu/light_ws2812.
+
+Tried to get ws2812_config.h to build in the right order, but my Make-fu is
+not up to par. Leaving it as a reminder, but currently have to set LED pin in
+`light_ws2812.h`.
